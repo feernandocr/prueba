@@ -1,0 +1,111 @@
+<h2>Listado de Permisos</h2>
+<table class="table table-dark" style="width: 70rem">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NOMBRE</th>
+      <th scope="col">APELLIDOS</th>
+      <th scope="col">TIPO PERMISO</th>
+      <th scope="col">FECHA SOLICITUD DE PERMISO</th>
+      <th scope="col">EDITAR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let permiso of permisos">
+      <td>{{ permiso.idPermiso }}</td>
+      <td>{{ permiso.nombreEmpleado }}</td>
+      <td>{{ permiso.apellidoEmpleado }}</td>
+      <td>{{ permiso.tipoPermiso.descripcion }}</td>
+      <td>{{ permiso.fechaPermiso }}</td>
+      <td>
+        <button
+            type="button"
+            name="button"
+            class="btn btn-primary"
+            (click)="openForEdit(permiso)">
+          Editar
+        </button>
+        <button
+        type="button"
+          name="button"
+          class="btn btn-danger"
+          (click)="eliminarPermiso(permiso.idPermiso)"
+        
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="card" style="width: 60rem">
+  <h1 class="text-center">Modificar Permiso</h1>
+  <form (ngSubmit)="updatePermiso()">
+    <div class="form-group mb-3 ">
+      <label>idPermiso :</label><br />
+      <input disabled="true"
+        required
+        minlength="2"
+        maxlength="20"
+        type="text"
+        class="form-control"
+        id="idPermiso"
+        name="idPermiso"
+        required        
+        [(ngModel)]="selectPermiso.idPermiso"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label>Nombre :</label><br />
+      <input
+        required
+        minlength="2"
+        maxlength="20"
+        type="text"
+        class="form-control"
+        id="nombreEmpleado"
+        name="nombreEmpleado"
+        required
+        placeholder="digite su nombre"
+        [(ngModel)]="selectPermiso.nombreEmpleado"
+      />
+    </div>
+    <pre></pre>
+    <div class="form-group">
+      <label>Apellidos :</label><br />
+      <input
+        type="text"
+        class="form-control"
+        id="apellidoEmpleado"
+        name="apellidoEmpleado"
+        required
+        placeholder="Digite su apellido"
+        [(ngModel)]="selectPermiso.apellidoEmpleado"
+      />
+    </div>
+    <pre></pre>
+    <div class="form-group">
+      <select id="listCenTra" [(ngModel)]="selectPermiso.idTipoPermiso" name="tipoPermiso" >
+        <option [ngValue]="tipo.idTipoPermiso" *ngFor="let tipo of tipos">
+          {{ tipo.descripcion }}
+        </option>
+      </select>
+      <label>Seleccione </label>
+    </div>
+    <pre></pre>
+    <div class="form-group">
+      <label>Fecha Solicitud de Permiso :</label><br />
+      <input
+        type="date"
+        class="form-control"
+        id="fechaPermiso"
+        name="fechaPermiso"
+        required
+        placeholder="digite su fecha de permiso"
+        [(ngModel)]="selectPermiso.fechaPermiso"
+      />
+    </div>
+    <pre></pre>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+  </form>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+    <h1 class="text-center">Registrar Permiso</h1>
+    <form name="form" (ngSubmit)="onSubmit()" method="post">
+        <div class="form-group">
+            <label>Nombre :</label><br>
+            <input required="true" minlength="2" maxlength="20" type="text" class="form-control" id="nombreEmpleado"
+                [(ngModel)]="permisoRequest.nombreEmpleado" name="nombreEmpleado" required minlength="4"
+                placeholder="digite su nombre" ng-minlength="5" ng-maxlength="15" ng-blur="change = verdadero "
+                ng-focus=" change = false " obligatorio>
+
+        </div>
+
+        <pre></pre>
+        <div class="form-group">
+            <label>Apellidos :</label><br>
+            <input type="text" class="form-control" id="apellidoEmpleado" [(ngModel)]="permisoRequest.apellidoEmpleado"
+                name="apellidoEmpleado" required="true" placeholder="Digite su apellido">
+        </div>
+        <pre></pre>
+        <div class="form-group">
+            <select required="true" id="listCenTra" [(ngModel)]="permisoRequest.idTipoPermiso" name="idTipoPermiso">
+                <option value="{{tipo.idTipoPermiso}}" *ngFor="let tipo of tipos">
+                    {{tipo.descripcion}}
+                </option>
+            </select>
+            <label>seleccione </label>
+        </div>
+        <pre></pre>
+        <div class="form-group">
+            <label>Fecha Solicitud de Permiso :</label><br>
+            <input type="date" class="form-control" id="fechaPermiso" [(ngModel)]="permisoRequest.fechaPermiso"
+                name="fechaPermiso" required="true" placeholder="digite su fecha de permiso">
+        </div>
+        <pre></pre>
+        <div class="form-group">
+        <button class="btn btn-primary" type="submit">Registrar</button>
+    </div>
+    </form>
+    
+</div>
